@@ -42,7 +42,12 @@ skill: improve some performance measure(e.g. prediction accuracy)
 
 
 ## 1.2.0 Hoeffding's Inequality
-$$P[|v-u| > \epsilon] \leq 2exp(-2\epsilon^2N)$$
+$$
+P[|v-u| > \epsilon] \leq 2exp(-2\epsilon^2N)
+$$
+
+
+
 - valid for all N and $\epsilon$
 - does not depend on u, **no need to know u**
 - larger sample size N or looser gap $\epsilon$ ensure higher probability for v~u
@@ -61,10 +66,16 @@ RK： **$R_{epc}$ can be far away from ${R_{emp}}$ when involving choice.**
 
 ## 1.2.1 经验风险与期望风险
 
-期望风险: $R_{exp}(f) = E_p[L(Y, f(X))] = \int L(y, f(x))P(x,y) dxdy$
+期望风险:
+$$
+R_{exp}(f) = E_p[L(Y, f(X))] = \int L(y, f(x))P(x,y) dxdy
+$$
 
-经验风险: $R_{emp}(f) = \frac{1}{N}\sum_{i=1}^{N}L(y_i, f(x_i))$
 
+经验风险: 
+$$
+R{emp}(f) = \frac{1}{N}\sum{i=1}^{N}L(y_i, f(x_i))
+$$
 期望风险是无法计算的,而当N趋于无穷，经验风险将会趋于期望风险，但是当样本有限的时候，用经验风险来估计期望风险需要进行矫正: 经验风险最小化 vs 结构风险最小化
 
 ## 1.2.2 经验风险最小化与结构风险最小化
@@ -80,10 +91,16 @@ $$R_{srm}(f) = \frac{1}{N} \sum_{i=1}^{N} L(y_i, f(x_i)) + \lambda J(f)$$
 统计学习的目的不仅仅是对已知数据有很好的预测能力，我们还希望它具有相当好的泛化能力，即对未知数据也能给出很好的预测结果。
 
 训练误差: 模型Y=f(x)关于训练数据集的平均损失:
-$$R_{emp}(f)=\frac{1}{N}\sum_{i=1}^N L(y_i, f(x_i))$$
+$$
+R{emp}(f)=\frac{1}{N}\sum{i=1}^N L(y_i, f(x_i))
+$$
+
 
 测试误差: 模型Y=f(x)关于测试数据集的平均损失:
-$$e_{test} = \frac{1}{N'}\sum_{i=1}^{N'}L(y_i,f(x_i))$$
+$$
+E{test} = \frac{1}{N'}\sum_{i=1}^{N'}L(y_i,f(x_i))
+$$
+
 
 ## 1.3.2 过拟合问题
 
@@ -123,7 +140,9 @@ $$min_f \frac{1}{N}\sum_{i=1}^{N} L(y_i,f(x_i)) + \lambda J(f)$$
 
 ## 1.5.1 泛化误差
 假设学习到模型f，则f对 **未知数据** 预测的误差(泛化误差)为:
-$$R_{exp}(f) = E_p[L(Y,f(X))] = \int L(y, f(x))P(x,y)dxdy$$
+$$
+R_{exp}(f) = E_p[L(Y,f(X))] = \int L(y, f(x))P(x,y)dxdy
+$$
 这里的x是未知变量,L是损失函数(风险函数),即,泛化误差是模型f对未知数据的预测期望损失。
 
 ## 1.5.2 泛化误差的概率上界
@@ -253,3 +272,4 @@ hypothesis set $\mathcal{H}$:
 $$min R_{emp}(f) = min \frac{1}{N}\sum_{i=1}^N L(y_i,f(x_i)) = min \frac{1}{N}\sum_{i=1}^N -lgP(Y_i|X_i)$$
 $$max \sum_{i=1}^N lg(Y_i|X_i)$$
 显然二者是等价的。
+
